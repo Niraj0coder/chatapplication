@@ -119,7 +119,7 @@ def register(request):
 @login_required
 def chat_view(request,name):
     chat_group=get_object_or_404(Chatgroup,group_name=name)
-    GroupMessage.objects.filter(group=name, is_read=False).exclude(author=request.user).update(is_read=True)
+  
     chat_messages=chat_group.chat_messages.all()[:30]
     if request.htmx:
         author = request.user
